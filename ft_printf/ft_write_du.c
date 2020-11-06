@@ -62,15 +62,15 @@ char			*ft_itoa_new(int nbr, int prec)
 int				ft_printnbr(int nbr, t_sspec spec, int flag)
 {
 	char		*arr;
-	int			res; // счетчик символов
+	int			res;
 	int			precision;
 
 	arr = NULL;
 	res = 0;
 	precision = spec.precision;
-	if (flag) // если инт
-		spec = ft_defflags(spec, &precision, nbr < 0); //в зависимости от флага проверяем ноль и минус
-	else // если ансайгнед
+	if (flag)
+		spec = ft_defflags(spec, &precision, nbr < 0);
+	else
 		spec = ft_defflags(spec, &precision, 0);
 	if (spec.dot && precision == 0 && nbr == 0 && spec.null == 0)
 		arr = ft_strdup("");

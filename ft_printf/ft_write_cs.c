@@ -21,7 +21,7 @@ static int		ft_spaces(t_sspec spec, int len)
 		spec.width = -spec.width;
 	while (len < spec.width--)
 	{
-		if (spec.null == 1 && spec.minus == 0) //проверяем что печатать ноль или пробел
+		if (spec.null == 1 && spec.minus == 0)
 			res += write(1, "0", 1);
 		else
 			res += write(1, " ", 1);
@@ -42,17 +42,17 @@ static t_sspec	ft_get_width(t_sspec spec, int *len)
 
 int				ft_printchar(char c, t_sspec spec)
 {
-	int			res; // счетчик символов
+	int			res;
 
 	res = 0;
-	if (spec.minus == 1 || spec.width < -1) //проверяем выравнивание, если минус есть то по левому краю
+	if (spec.minus == 1 || spec.width < -1)
 	{
 		res += write(1, &c, 1);
-		res += ft_spaces(spec, 1); //тут проверяем что перчатать нули или пробелы и печатаем
+		res += ft_spaces(spec, 1);
 	}
-	else // если нет минуса то по правому
+	else
 	{
-		res += ft_spaces(spec, 1); //тут проверяем что перчатать нули или пробелы и печатаем
+		res += ft_spaces(spec, 1);
 		res += write(1, &c, 1);
 	}
 	return (res);
@@ -60,15 +60,15 @@ int				ft_printchar(char c, t_sspec spec)
 
 int				ft_printstr(char *s, t_sspec spec)
 {
-	int			res; //счетчик символов
+	int			res;
 	int			len;
 
 	res = 0;
 	if (s == NULL)
-		return (ft_printstr("(null)", spec)); // если строка инициализирована нулл то выводим как у стандартной
+		return (ft_printstr("(null)", spec));
 	len = ft_strlen(s);
-	spec = ft_get_width(spec, &len); //тут проверяем длину строки и размер точность, если точность меньше, то строка обрежется
-	if (spec.minus == 1) // тут тоже самое что и в чаре - проверяем выравнивание и что печатать
+	spec = ft_get_width(spec, &len);
+	if (spec.minus == 1)
 	{
 		res += write(1, s, len);
 		res += ft_spaces(spec, len);

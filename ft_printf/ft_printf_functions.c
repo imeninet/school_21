@@ -12,14 +12,14 @@
 
 #include "ft_printf.h"
 
-int					ft_width_pars(const char **format, va_list ap) // парсим размер ширины
+int					ft_width_pars(const char **format, va_list ap)
 {
 	int				width;
 
 	width = 0;
-	if (**format == '*') //определяем из аргумента или из числа брать ширину
+	if (**format == '*') 
 		width = va_arg(ap, int);
-	if (ft_isdigit(**format)) // если число в строке есть возвращаем его и потом запишим в ширину
+	if (ft_isdigit(**format))
 	{
 		width = ft_atoi(*format);
 		while (ft_isdigit(**format))
@@ -31,10 +31,10 @@ int					ft_width_pars(const char **format, va_list ap) // парсим разм�
 
 int					ft_prec_pars(const char **format, va_list ap)
 {
-	int				prec; //переменная для числа точности
+	int				prec;
 
 	prec = 0;
-	if (*(*format + 1) == '*') //если звездочка то берем аргумент
+	if (*(*format + 1) == '*'
 	{
 		(*format)++;
 		prec = va_arg(ap, int);
@@ -42,11 +42,11 @@ int					ft_prec_pars(const char **format, va_list ap)
 	if (ft_isdigit(*(*format + 1)))
 	{
 		(*format)++;
-		prec = ft_atoi(*format);//записываем атоем в инт
-		while (ft_isdigit(*(*format + 1)))//пропускаем счетчиком число до конца
+		prec = ft_atoi(*format);
+		while (ft_isdigit(*(*format + 1)))
 			(*format)++;
 	}
-	return (prec);//возвращаем интовое значение точности
+	return (prec);
 }
 
 t_sspec				ft_defflags(t_sspec spec, int *prec, int neg)
